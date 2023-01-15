@@ -14,6 +14,7 @@ const Visualizer = () => {
         const context = canvas.getContext("2d");
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
+
         let analyser;
         let bufferLength;
         let dataArray;
@@ -34,7 +35,6 @@ const Visualizer = () => {
             analyser = audioCtx.createAnalyser();
             const source = audioCtx.createMediaStreamSource(stream);
             source.connect(analyser);
-            console.log("analyser: " + analyser);
             analyser.fftSize = 128;
             bufferLength = analyser.frequencyBinCount;
             dataArray = new Uint8Array(bufferLength);

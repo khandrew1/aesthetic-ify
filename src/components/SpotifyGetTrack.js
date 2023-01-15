@@ -1,34 +1,40 @@
-import React from 'react'
-import { useState } from 'react';
+import React from 'react';
+import { useEffect, useState } from 'react';
 import { Button } from '@mui/material'
 import axios from 'axios';
 
 const SpotifyGetTrack = () => {
 
+    const [ currentTrack, setCurrentTrack ] = useState("");
+    const [ currentArtist, setCurrentArtist ] = useState("");
+
     let token = window.localStorage.getItem("token");
 
-    const [ currentTrack, setCurrentTrack ] = useState("");
+    useEffect(() => {
+        let interval = setInterval( async () => {
+            const {data} = await axios.get("https://api.spotify.com/v1/me/player/currently-playing",
+                {headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            setCurrentTrack(data.item.name);
+            setCurrentArtist(data.item.artists[0].name);
+        }, 2000);
 
-    const getTrack = async () => {
-        const {data} = await axios.get("https://api.spotify.com/v1/me/player/currently-playing",
-            {headers: {
-                Authorization: `Bearer ${token}`
-            }
-        });
-        setCurrentTrack(data);
+        return () => {
+            clearInterval(interval);
+        }
+    });
+
+    const logCurrentArtist = () => {
+        console.log(currentArtist);
     }
-
-    const logCurrentTrack = () => {
-        getTrack();
-        console.log(currentTrack.item.name);
-    }
-
 
     return (
         <>
-            <Button onClick={logCurrentTrack} variant="contained">Get Track</Button>
+            <h1>{currentTrack} - {currentArtist}</h1>
         </>
     )
 }
 
-export default SpotifyGetTrack
+export default SpotifyGetTrack;
