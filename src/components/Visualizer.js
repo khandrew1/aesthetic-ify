@@ -6,24 +6,8 @@ import { useRef, useEffect } from 'react';
 
 const Visualizer = () => {
 
-    const audio1 = new Audio(soundFile);
-
     const canvasRef = useRef(null);
     const contextRef = useRef(null);
-
-    const playSong = () => {
-        if (audio1.paused) {
-            // audioCtx.resume();
-            audio1.play();
-        } else {
-            audio1.pause();
-        }
-    }
-
-    // audioSource = audioCtx.createMediaElementSource(audio1);
-    // analyser = audioCtx.createAnalyser();
-    // audioSource.connect(analyser);
-    // analyser.connect(audioCtx.destination);
 
     useEffect(() => {
         const canvas = canvasRef.current;
@@ -108,7 +92,6 @@ const Visualizer = () => {
 
     return (
         <>
-            <Button onClick={playSong} variant="contained">Play</Button>
             <canvas ref={canvasRef} />
         </>
     );
