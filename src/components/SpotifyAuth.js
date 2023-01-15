@@ -10,9 +10,6 @@ const SpotifyAuth = () => {
     const RESPONSE_TYPE = "token";
   
     const [ token, setToken ] = useState(""); // token state to check if user is logged in
-
-    const [ searchKey, setSearchKey ] = useState("");
-    const [ artists, setArtists ] = useState([]);
   
     useEffect(() => {
       const hash = window.location.hash;
@@ -34,29 +31,6 @@ const SpotifyAuth = () => {
       window.localStorage.removeItem("token"); // removes token from local storage
     });
     
-    const searchArtists = (async (e) => {
-        e.preventDefault();
-        const {data} = await axios.get("https://api.spotify.com/v1/search",
-            {headers: {
-                Authorization: `Bearer ${token}`
-            },
-            params: {
-                q: searchKey,
-                type: "artist"
-            }
-        });
-        setArtists(data.artists.items);
-    });
-
-    const renderArtists = () => {
-        return artists.map(artist => (
-            <div key={artist.id}>
-                {artist.images.length ? <img width={"100%"} src={artist.images[0].url} alt=""/> : <div>No Image</div>}
-                {artist.name}
-            </div>
-        ))
-    }
-
   return (
     <>
         {!token ? 
