@@ -3,13 +3,13 @@ import { useEffect, useState } from 'react';
 import { Button } from '@mui/material'
 import axios from 'axios';
 
-const SpotifyAuth = () => {
+const SpotifyAuth = (props) => {
     const CLIENT_ID = "ffcdeee6fca447a897b48405c63d2761"; // Client ID grabbed from Spotify Developer Dashboard
     const REDIRECT_URI = "http://localhost:3000"; // Redirects to local server
     const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize"; // Directs user to authorize their Spotify account for use
     const RESPONSE_TYPE = "token";
-  
-    const [ token, setToken ] = useState(""); // token state to check if user is logged in
+
+    // token is grabbed from parent
   
     useEffect(() => {
       const hash = window.location.hash;
@@ -22,18 +22,18 @@ const SpotifyAuth = () => {
         window.localStorage.setItem("token", token); // saves token to local storage
       }
   
-      setToken(token); // sets the token state to true
+      props.setToken(token); // sets the token state to true
   
     }, []);
   
     const logout = (() => {
-      setToken(""); // resets token for logout
+      props.setToken(""); // resets token for logout
       window.localStorage.removeItem("token"); // removes token from local storage
     });
     
   return (
     <>
-        {!token ? 
+        {!props.token ? 
             <Button variant="contained" href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&scope=user-read-currently-playing streaming user-read-email user-read-private`}>Login to Spotify</Button> 
             : <Button onClick={logout} variant="contained">Logout</Button>
         }

@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { Button } from '@mui/material'
 import axios from 'axios';
 
-const SpotifyGetTrack = () => {
+const SpotifyGetTrack = (props) => {
 
     const [ currentTrack, setCurrentTrack ] = useState("");
     const [ currentArtist, setCurrentArtist ] = useState("");
@@ -32,7 +32,7 @@ const SpotifyGetTrack = () => {
 
     return (
         <>
-            <h1>{currentTrack} - {currentArtist}</h1>
+            {props.token ? <h1>{currentTrack} - {currentArtist}</h1> : <h1>Please login</h1>}
         </>
     )
 }
