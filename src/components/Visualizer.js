@@ -32,7 +32,7 @@ const Visualizer = (props) => {
             analyser = audioCtx.createAnalyser();
             const source = audioCtx.createMediaStreamSource(stream);
             source.connect(analyser);
-            analyser.fftSize = 128;
+            analyser.fftSize = 64;
             bufferLength = analyser.frequencyBinCount;
             dataArray = new Uint8Array(bufferLength);
             barWidth = canvas.width / 2 / bufferLength;
