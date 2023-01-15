@@ -4,7 +4,7 @@ import soundFile from './music/are you sleeping alone again_.mp3';
 import { Button } from '@mui/material'
 import { useRef, useEffect } from 'react';
 
-const Visualizer = () => {
+const Visualizer = (props) => {
 
     const canvasRef = useRef(null);
     const contextRef = useRef(null);
@@ -12,8 +12,8 @@ const Visualizer = () => {
     useEffect(() => {
         const canvas = canvasRef.current;
         const context = canvas.getContext("2d");
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+        canvas.width = props.width;
+        canvas.height = props.height;
 
         let analyser;
         let bufferLength;
@@ -67,7 +67,7 @@ const Visualizer = () => {
                 const red = (i * barHeight) / 10;
                 const green = (i * 4);
                 const blue = barHeight / 4 - 12;
-                context.fillStyle = `rgb(${red}, ${green}, ${blue})`;
+                context.fillStyle = `white`;
                 context.fillRect(
                     canvas.width / 2 - x,
                     canvas.height - barHeight,
@@ -82,7 +82,7 @@ const Visualizer = () => {
                 const red = (i * barHeight) / 10;
                 const green = (i * 4);
                 const blue = barHeight / 4 - 12;
-                context.fillStyle = `rgb(${red}, ${green}, ${blue})`;
+                context.fillStyle = 'white';
                 context.fillRect(x, canvas.height - barHeight, barWidth, barHeight);
                 x += barWidth;
             }
