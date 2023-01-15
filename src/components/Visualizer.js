@@ -4,7 +4,6 @@ import { useRef, useEffect } from 'react';
 const Visualizer = (props) => {
 
     const canvasRef = useRef(null);
-    const contextRef = useRef(null);
 
     useEffect(() => {
         const canvas = canvasRef.current;
@@ -17,6 +16,7 @@ const Visualizer = (props) => {
         let dataArray;
         let barWidth;
         let x = 0;
+        // eslint-disable-next-line
         let barHeight = 0;
 
         function handleError(err) {
@@ -61,9 +61,6 @@ const Visualizer = (props) => {
             let barHeight;   
             for (let i = 0; i < bufferLength; i++) {
                 barHeight = dataArray[i];
-                const red = (i * barHeight) / 10;
-                const green = (i * 4);
-                const blue = barHeight / 4 - 12;
                 context.fillStyle = `white`;
                 context.fillRect(
                     canvas.width / 2 - x,
@@ -76,9 +73,6 @@ const Visualizer = (props) => {
 
             for (let i = 0; i < bufferLength; i++) {
                 barHeight = dataArray[i];
-                const red = (i * barHeight) / 10;
-                const green = (i * 4);
-                const blue = barHeight / 4 - 12;
                 context.fillStyle = 'white';
                 context.fillRect(x, canvas.height - barHeight, barWidth, barHeight);
                 x += barWidth;

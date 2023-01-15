@@ -3,6 +3,7 @@ import SpotifyGetTrack from './components/SpotifyGetTrack.js';
 import { useState } from 'react';
 import { Grid } from '@mui/material';
 import SpotifyWebPlayback from './components/SpotifyWebPlayback.js';
+import Visualizer from './components/Visualizer.js';
 import './App.css';
 
 function App() {
@@ -13,6 +14,9 @@ function App() {
     <>
     {token ? 
     <>
+    <div style={{margin: 'auto', width: '50%', paddingTop: '8%'}}>
+      <Visualizer height={window.innerHeight/4} width={window.innerWidth/2}/>
+    </div>
     <Grid container direction="column" justifyContent="center" alignItems="center">
       <SpotifyGetTrack token={token} setToken={setToken} />
     </Grid>

@@ -2,7 +2,6 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import { Grid } from '@mui/material'
 import axios from 'axios';
-import Visualizer from './Visualizer.js';
 import '../App.css';
 
 const SpotifyGetTrack = (props) => {
@@ -40,14 +39,10 @@ const SpotifyGetTrack = (props) => {
 
     return (
         <>
-        <div style={{margin: 'auto', width: '50%', paddingTop: '8%'}}>
-            <Visualizer height={window.innerHeight/4} width={window.innerWidth/2}/>
-        </div>
             <Grid container justifyContent="center" 
                 alignItems="center" rowSpacing={3}>
-
                     <Grid item xs={2}>
-                        <img src={currentAlbum} style= {{height: 256, width: 256}}/>
+                        <img src={currentAlbum} style={{height: 256, width: 256}} alt="loading..." />
                     </Grid>
 
                     <Grid>
