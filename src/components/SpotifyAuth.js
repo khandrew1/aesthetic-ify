@@ -34,7 +34,7 @@ const SpotifyAuth = () => {
   return (
     <>
         {!token ? 
-            <Button variant="contained" href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&scope=user-read-currently-playing`}>Login to Spotify</Button> 
+            <Button variant="contained" href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&scope=user-read-currently-playing streaming user-read-email user-read-private`}>Login to Spotify</Button> 
             : <Button onClick={logout} variant="contained">Logout</Button>}
     </>
   );

@@ -1,5 +1,6 @@
+
 import React from 'react';
-import soundFile from './music/testSong.mp3';
+import soundFile from './music/are you sleeping alone again_.mp3';
 import { Button } from '@mui/material'
 import { useRef, useEffect } from 'react';
 
@@ -10,48 +11,66 @@ const Visualizer = () => {
     const canvasRef = useRef(null);
     const contextRef = useRef(null);
 
-    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    let audioSource = null;
-    let analyser = null;
-
     const playSong = () => {
         if (audio1.paused) {
-            audioCtx.resume();
+            // audioCtx.resume();
             audio1.play();
         } else {
             audio1.pause();
         }
     }
 
-    audioSource = audioCtx.createMediaElementSource(audio1);
-    analyser = audioCtx.createAnalyser();
-    audioSource.connect(analyser);
-    analyser.connect(audioCtx.destination);
+    // audioSource = audioCtx.createMediaElementSource(audio1);
+    // analyser = audioCtx.createAnalyser();
+    // audioSource.connect(analyser);
+    // analyser.connect(audioCtx.destination);
 
     useEffect(() => {
         const canvas = canvasRef.current;
         const context = canvas.getContext("2d");
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
-
-        analyser.fftSize = 128;
-        const bufferLength = analyser.frequencyBinCount;
-        const dataArray = new Uint8Array(bufferLength);
-        const barWidth = canvas.width / 2 / bufferLength;
-
+        let analyser;
+        let bufferLength;
+        let dataArray;
+        let barWidth;
         let x = 0;
         let barHeight = 0;
-        function animate() {
-            x = 0;
-            context.clearRect(0, 0, canvas.width, canvas.height);
-            analyser.getByteFrequencyData(dataArray);
-            drawVisualizer({
-                bufferLength,
-                dataArray,
-                barWidth
-            })
-            requestAnimationFrame(animate);
+
+        function handleError(err) {
+            console.log('You must give access to your mic in order to proceed');
         }
+
+        async function getAudio() {
+            let stream = await navigator.mediaDevices
+            .getUserMedia({ audio: true })
+            .catch(handleError);
+
+            const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            analyser = audioCtx.createAnalyser();
+            const source = audioCtx.createMediaStreamSource(stream);
+            source.connect(analyser);
+            console.log("analyser: " + analyser);
+            analyser.fftSize = 128;
+            bufferLength = analyser.frequencyBinCount;
+            dataArray = new Uint8Array(bufferLength);
+            barWidth = canvas.width / 2 / bufferLength;
+            function animate() {
+                x = 0;
+                context.clearRect(0, 0, canvas.width, canvas.height);
+                analyser.getByteFrequencyData(dataArray);
+                drawVisualizer({
+                    bufferLength,
+                    dataArray,
+                    barWidth
+                })
+                requestAnimationFrame(animate);
+            }
+
+            animate();
+        }
+
+        getAudio();
 
         const drawVisualizer = ({
             bufferLength,
@@ -84,8 +103,6 @@ const Visualizer = () => {
                 x += barWidth;
             }
         }
-
-        animate();
 
     });
 
