@@ -1,7 +1,6 @@
 import React from 'react'
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Button } from '@mui/material'
-import axios from 'axios';
 
 const SpotifyAuth = (props) => {
     const CLIENT_ID = "ffcdeee6fca447a897b48405c63d2761"; // Client ID grabbed from Spotify Developer Dashboard

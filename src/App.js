@@ -1,7 +1,5 @@
-import Visualizer from './components/Visualizer.js'
 import SpotifyAuth from './components/SpotifyAuth.js'
 import SpotifyGetTrack from './components/SpotifyGetTrack.js';
-import Login from './Login.js';
 import { useState } from 'react';
 import { Grid } from '@mui/material';
 import SpotifyWebPlayback from './components/SpotifyWebPlayback.js';

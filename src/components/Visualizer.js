@@ -1,7 +1,4 @@
-
 import React from 'react';
-import soundFile from './music/are you sleeping alone again_.mp3';
-import { Button } from '@mui/material'
 import { useRef, useEffect } from 'react';
 
 const Visualizer = (props) => {
