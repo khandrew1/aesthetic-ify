@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
+// Spotify Web Player created using Spotify's guide; used for testing purposes
+
 const track = {
     name: "",
     album: {

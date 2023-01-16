@@ -1,6 +1,8 @@
 # aesthetic-ify
 
-Aesthetic Spotify Audio Visualizer created with ReactJS and Spotify API.
+Originally created for UC Riverside's Rose Hack 2023. (https://devpost.com/software/aesthetic-ify)
+
+Spotify Audio Visualizer created with ReactJS and Spotify API.
 
 Here is a website that will totally level up your setup!
 
