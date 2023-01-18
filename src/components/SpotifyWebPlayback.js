@@ -16,10 +16,10 @@ const track = {
 
 function WebPlayback(props) {
 
-    const [is_paused, setPaused] = useState(false);
-    const [is_active, setActive] = useState(false);
+    const [isPaused, setPaused] = useState(false);
+    const [isActive, setActive] = useState(false);
     const [player, setPlayer] = useState(undefined);
-    const [current_track, setTrack] = useState(track);
+    const [currentTrack, setTrack] = useState(track);
 
     useEffect(() => {
 
@@ -67,7 +67,7 @@ function WebPlayback(props) {
         };
     }, []);
 
-    if (!is_active) { 
+    if (!isActive) { 
         return (
             <>
                 <div className="container">
@@ -82,18 +82,18 @@ function WebPlayback(props) {
                 <div className="container">
                     <div className="main-wrapper">
 
-                        <img src={current_track.album.images[0].url} className="now-playing__cover" alt="" />
+                        <img src={currentTrack.album.images[0].url} className="now-playing__cover" alt="" />
 
                         <div className="now-playing__side">
-                            <div className="now-playing__name">{current_track.name}</div>
-                            <div className="now-playing__artist">{current_track.artists[0].name}</div>
+                            <div className="now-playing__name">{currentTrack.name}</div>
+                            <div className="now-playing__artist">{currentTrack.artists[0].name}</div>
 
                             <button className="btn-spotify" onClick={() => { player.previousTrack() }} >
                                 &lt;&lt;
                             </button>
 
                             <button className="btn-spotify" onClick={() => { player.togglePlay() }} >
-                                { is_paused ? "PLAY" : "PAUSE" }
+                                { isPaused ? "PLAY" : "PAUSE" }
                             </button>
 
                             <button className="btn-spotify" onClick={() => { player.nextTrack() }} >
