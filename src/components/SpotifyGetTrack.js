@@ -25,13 +25,14 @@ const SpotifyGetTrack = (props) => {
       setCurrentTrack(data.item.name); // sets the current track to the name
       setCurrentArtist(data.item.artists); // sets the name of the artists
       setCurrentAlbum(data.item.album.images[1].url); // sets the album to the 300x300 album art
-    }, 1000);
+    }, 500);
 
     return () => {
       clearInterval(interval); // clears interval for efficiency
     };
   });
 
+  /* used for testing purposes */
   const logCurrentArtist = () => {
     console.log(currentArtist);
   };
