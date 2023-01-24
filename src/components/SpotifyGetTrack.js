@@ -1,8 +1,8 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { Grid } from "@mui/material";
+import { Box } from "@mui/material";
 import axios from "axios";
-import "../App.css";
+// import "../App.css";
 
 const SpotifyGetTrack = (props) => {
   const [currentTrack, setCurrentTrack] = useState(""); // used to store the name of the current track
@@ -43,25 +43,17 @@ const SpotifyGetTrack = (props) => {
 
   return (
     <>
-      <Grid
-        container
-        justifyContent="center"
-        alignItems="center"
-        rowSpacing={3}
-      >
-        <Grid item xs={2}>
-          <img
-            src={currentAlbum}
-            style={{ height: 256, width: 256 }}
-            alt="loading..."
-          />
-        </Grid>
-
-        <Grid>
-          <h1>{currentTrack}</h1>
-          <h2>{artistNames}</h2>
-        </Grid>
-      </Grid>
+      <Box sx={{ display: "flex" }}>
+        <img
+          src={currentAlbum}
+          style={{ height: 256, width: 256 }}
+          alt="loading..."
+        />
+        <Box sx={{ flexDirection: "column", alignSelf: "center", pl: 2 }}>
+          <Box>{currentTrack}</Box>
+          <Box>{artistNames}</Box>
+        </Box>
+      </Box>
     </>
   );
 };

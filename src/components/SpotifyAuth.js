@@ -47,7 +47,6 @@ const SpotifyAuth = (props) => {
         <Button
           onClick={logout}
           variant="outlined"
-          style={{ position: "absolute", bottom: 0 }}
         >
           Log out
         </Button>
