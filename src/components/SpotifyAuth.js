@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { Button } from "@mui/material";
 
 const SpotifyAuth = (props) => {
-  const CLIENT_ID = "ffcdeee6fca447a897b48405c63d2761"; // Client ID grabbed from Spotify Developer Dashboard
+  const CLIENT_ID = ""; // Client ID grabbed from Spotify Developer Dashboard
   const REDIRECT_URI = "http://localhost:3000"; // Redirects to local server
   const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize"; // Directs user to authorize their Spotify account for use
   const RESPONSE_TYPE = "token";
